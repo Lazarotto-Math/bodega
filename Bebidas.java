@@ -13,21 +13,31 @@ public abstract class Bebidas{
         this.qtdEstoque = qtdEstoque;
     }
 
-    public void imprimeBebida(){
-        System.out.println("ID: "+this.id+" / Nome: "+this.nome+" / ML: "+this.ml+" / Preco: "+this.preco+" / Qtd Estoque: "+this.qtdEstoque);
-    }
-
-    public void compraBebida(Bebidas[] bebidas, int id, int qtd){
-        for(int i = 0; i<bebidas.length; i++){
-            if(bebidas[i].id == this.id)
-        }
-    }
-
-    public void vendeBebida(Bebidas[] bebidas, int id, int qtd, Clientes cliente){
-        for(int i = 0; i<bebidas.length; i++){
-            if(bebidas[i].id; )        
-        
+    public int getId(){
+        return this.id;
     }
     
+    public String getNome(){
+        return this.nome;
+    }
+
+    public int getMl(){
+        return this.ml;
+    }
+
+    public double getPreco(){
+        return this.preco;
+    }
     
+    public int getQtdEstoque(){
+        return this.qtdEstoque;
+    }
+
+    public void setQtdEstoque(qtd){
+        this.qtdEstoque = qtd;
+    }
+
+    public abstract void imprimeBebida();
+    public abstract void compraBebida(Bebidas[] bebidas, int id, int qtd); //ver se todods esses parametros sao necessarios
+    public abstract void vendeBebida(Bebidas[] bebidas, int id, int qtd, Clientes cliente);
 }
