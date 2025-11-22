@@ -1,6 +1,6 @@
 private class naoAlcoolicas extends Bebidas{
 
-    public void compraBebida(Bebidas[] bebidas, int id, int qtd){ //ver se todods esses parametros sao necessarios
+    public void compraBebida(Bebidas[] bebidas, int id, int qtd){
         int estq;
         for(int i = 0; i<bebidas.length; i++){
             if(bebidas[i].getId()== id){
@@ -17,8 +17,10 @@ private class naoAlcoolicas extends Bebidas{
 
     public void vendeBebida(Bebidas[] bebidas, int id, int qtd, Clientes cliente){
         for(int i = 0; i<bebidas.length; i++){
-            if(bebidas[i].id == id){
-                bebidas[i].qtdEstoque -= qtd;
+            estq = bebidas[i].getQtdEstoque();
+            if(estq >= qtd){
+                estq -= qtd;
+                bebidas[i].setQtdEstoque(estq);
             }
         } 
     }

@@ -19,11 +19,12 @@ private class Alcoolicas extends Bebidas{
 
     public void vendeBebida(Bebidas[] bebidas, int id, int qtd, Clientes cliente){
         if(cliente.getMaiorDeIdade() == true){
-            for(int i = 0; i<bebidas.length; i++){ //incluir questao de ser maior de idade p alcoolica
+            for(int i = 0; i<bebidas.length; i++){
                 if(bebidas[i].getId() == id){
-                    estq = 
-                    if(bebidas[i].qtdEstoque >= qtd){
-                        bebidas[i].qtdEstoque -= qtd;
+                    estq = bebidas[i].getQtdEstoque();
+                    if(estq >= qtd){
+                        estq -= qtd;
+                        bebidas[i].setQtdEstoque(estq);
                     }
                 } else{
                     System.out.println("Nos temos apenas: " + bebidas[i].getQtdEstoque() + " unidade(s) em estoque amigao.")
