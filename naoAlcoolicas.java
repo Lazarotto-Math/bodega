@@ -1,4 +1,8 @@
-private class naoAlcoolicas extends Bebidas{
+class naoAlcoolicas extends Bebidas{
+
+    naoAlcoolicas(int id, String nome, int ml, double preco){
+        super(id, nome, ml, preco);        
+    }
 
     public void compraBebida(Bebidas[] bebidas, int id, int qtd){
         int estq;
@@ -16,6 +20,7 @@ private class naoAlcoolicas extends Bebidas{
     }
 
     public void vendeBebida(Bebidas[] bebidas, int id, int qtd, Clientes cliente){
+        int estq;
         for(int i = 0; i<bebidas.length; i++){
             estq = bebidas[i].getQtdEstoque();
             if(estq >= qtd){
@@ -23,10 +28,6 @@ private class naoAlcoolicas extends Bebidas{
                 bebidas[i].setQtdEstoque(estq);
             }
         } 
-    }
-
-    public void imprimeBebida(){
-        System.out.println("ID: "+this.id+" / Nome: "+this.nome+" / ML: "+this.ml+" / Preco: "+this.preco+" / Qtd Estoque: "+this.qtdEstoque);
-    }    
+    }  
 
 }

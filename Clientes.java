@@ -1,11 +1,11 @@
-private class Clientes {
+class Clientes {
     private int id;
     private String nome;
     private String CPF;
     private boolean maiorDeIdade;
     private boolean fiado;
 
-    public Clientes(int id, String nome, String CPF, boolean maiorDeIdade, boolean fiado){
+    Clientes(int id, String nome, String CPF, boolean maiorDeIdade, boolean fiado){
         this.id = id;
         this.nome = nome;
         this.CPF = CPF;
@@ -18,6 +18,6 @@ private class Clientes {
     }
 
     public boolean getMaiorDeIdade(){
-        return this.getMaiorDeIdade;
+        return this.maiorDeIdade;
     }
 }

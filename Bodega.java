@@ -1,10 +1,15 @@
-public class BodegaDoNizo{
+public class Bodega{
     public String nome;
     public String CNPJ;
     public Bebidas[] bebidas = new Bebidas[30];
     public Clientes[] clientes = new Clientes[30];
-    private qtdClientes;
-    private qtdBebidas;
+    private int qtdClientes;
+    private int qtdBebidas;
+
+    Bodega(String nome, String CNPJ){
+        this.nome=nome;
+        this.CNPJ=CNPJ;
+    }
 
     public void cadastraCliente(Clientes c){
         if(qtdClientes < clientes.length){
@@ -17,6 +22,7 @@ public class BodegaDoNizo{
 
     public void cadastraBebida(Bebidas b){
         if(qtdBebidas < bebidas.length){
+            b.setId(qtdBebidas+1);
             bebidas[qtdBebidas] = b;
             qtdBebidas ++;
         } else{
@@ -25,19 +31,15 @@ public class BodegaDoNizo{
     }
 
     public void listaBebidas(){
-        System.out.println("Listagem do estoque total do Bar do Nizo Fissura: ")
-        for(int i = 0; i<bebidas.length; i++){
-            System.out.printf(i+1);
-            System.out.printf(" - ");
+        System.out.println("Listagem do estoque total do Bar: ");
+        for(int i = 0; i<qtdBebidas; i++){
             bebidas[i].imprimeBebida();
         }
     }
 
     public void listaClientes(){
-        System.out.println("Listagem da clientela do Bar do Nizo Fissura: ")
-        for(int i = 0; i<clientes.length; i++){
-            System.out.printf(i+1);
-            System.out.printf(" - ");
+        System.out.println("Listagem da clientela do Bar: ");
+        for(int i = 0; i<qtdClientes; i++){
             clientes[i].imprimeCliente();
         }
     }
@@ -47,5 +49,13 @@ public class BodegaDoNizo{
     }
 
     public void sair(){
+    }
+
+    public int getQtdBebidas(){
+        return qtdBebidas;    
+    }
+
+    public int getQtdClientes(){
+        return qtdClientes;    
     }
 }
