@@ -48,34 +48,30 @@ public abstract class Bebidas{
         this.id = id;
     }
 
-    public void imprimeBebida(){
+    // Método para imprimir a bebida
+    public void imprimeBebida(){ 
         System.out.println("ID: "+this.getId()+" / Nome: "+this.getNome()+" / ML: "+this.getMl()+" / Preco: "+this.getPreco()+" / Qtd Estoque: "+this.getQtdEstoque());
     } 
 
+    // Implementação de compraBebida: Encontra e atualiza o estoque
     public void compraBebida(Bebidas[] bebidas, int id, int qtd){
-        int estq;
+        boolean encontrada = false;
         for(int i = 0; i<bebidas.length; i++){
-            if(bebidas[i].getId()== id){
-                estq = bebidas[i].getQtdEstoque();
+            // Checamos se o objeto existe antes de chamar getId()
+            if(bebidas[i] != null && bebidas[i].getId() == id){
+                int estq = bebidas[i].getQtdEstoque();
                 estq += qtd;
                 bebidas[i].setQtdEstoque(estq);
+                encontrada = true;
+                System.out.println("Compra realizada. Novo estoque: " + bebidas[i].getQtdEstoque() + " unidades.");
+                break; // Sai do loop
             }
-            else{
-                System.out.println("Sinto muito, essa bebida nao foi encontrada, cara...");
-
-            }
+        }
+        if(!encontrada){
+            System.out.println("Sinto muito, essa bebida nao foi encontrada, cara...");
         }
     }
     
-    public void vendeBebida(Bebidas[] bebidas, int id, int qtd, Clientes cliente){
-        //não vamos usar o cliente no Não Alcoolicas, mas por padrão, deixaremos com, já que precisa no alcoolica
-        int estq;
-        for(int i = 0; i<bebidas.length; i++){
-            estq = bebidas[i].getQtdEstoque();
-            if(estq >= qtd){
-                estq -= qtd;
-                bebidas[i].setQtdEstoque(estq);
-            }
-        } 
-    }
+    // Método abstrato: A lógica de venda (com validação de idade) será implementada nas subclasses
+    public abstract void vendeBebida(Bebidas[] bebidas, int idBebida, int qtd, Clientes cliente);
 }

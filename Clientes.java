@@ -14,10 +14,24 @@ class Clientes {
     }
 
     public void imprimeCliente(){
-        System.out.println("Id: " + this.id + " / Nome: " + this.nome + " / CPF: " + this.CPF + " / Maior de idade: " + this.maiorDeIdade + " / Pode vender fiado: " + this.fiado);
+        String statusIdade = this.maiorDeIdade ? "Sim" : "Nao";
+        String statusFiado = this.fiado ? "Sim" : "Nao";
+        System.out.println("Id: " + this.id + " / Nome: " + this.nome + " / CPF: " + this.CPF + " / Maior de idade: " + statusIdade + " / Pode vender fiado: " + statusFiado);
     }
 
     public boolean getMaiorDeIdade(){
         return this.maiorDeIdade;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+    
+    public String getNome(){
+        return this.nome;
+    }
+
+    public int getId(){
+        return this.id;
     }
 }
