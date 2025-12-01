@@ -21,8 +21,11 @@ public class Bodega{
     }
 
     public void cadastraBebida(Bebidas b){
+        if(qtdBebidas == 0){
+            
+        }
         if(qtdBebidas < bebidas.length){
-            b.setId(qtdBebidas+1);
+            b.setId(qtdBebidas);
             bebidas[qtdBebidas] = b;
             qtdBebidas ++;
         } else{

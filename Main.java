@@ -14,7 +14,7 @@ public class Main{
         //menu de funcionamento
         int barFuncionando = 1;
         while(barFuncionando>0){   
-            System.out.println("Bem vindo!\nSelecione uma opcao:\n1.Cadastrar Bebidas\n2.Lista de Bebidas\n0.Sair");
+            System.out.println("Bem vindo!\nSelecione uma opcao:\n1.Cadastrar Bebidas\n2.Lista de Bebidas\n3.Comprar Bebida\n4.Vender Bebida\n5.Cadastrar Cliente \n6.Listar Clientes\n0.Sair");
             int opcao = sc.nextInt();
             switch (opcao){
                 case 0:
@@ -44,9 +44,24 @@ public class Main{
                         System.out.println("Bebida cadastrada com sucesso!");
                         break;
                     
-                case 2:
-                bodega.listaBebidas();
+                case 2: //listar bebidas
+                    bodega.listaBebidas();
+                    break;
+
+                case 3: //comprar bebidas
+                    System.out.println("Qual ID da bebida para compra?");
+                    int id = sc.nextInt();
+                    System.out.println("Quantas Un você quer comprar?");
+                    int qtd = sc.nextInt();
+                    bodega.bebidas[id].compraBebida(bodega.bebidas, id, qtd);
+                    System.out.println("Bebida comprada com sucesso!");
+                    break;
+
+                case 4: // Vender bebidas
+                    break;
+
             }
+
         
         }
 

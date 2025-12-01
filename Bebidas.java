@@ -50,7 +50,32 @@ public abstract class Bebidas{
 
     public void imprimeBebida(){
         System.out.println("ID: "+this.getId()+" / Nome: "+this.getNome()+" / ML: "+this.getMl()+" / Preco: "+this.getPreco()+" / Qtd Estoque: "+this.getQtdEstoque());
-    }  
-    public abstract void compraBebida(Bebidas[] bebidas, int id, int qtd); //ver se todods esses parametros sao necessarios
-    public abstract void vendeBebida(Bebidas[] bebidas, int id, int qtd, Clientes cliente);
+    } 
+
+    public void compraBebida(Bebidas[] bebidas, int id, int qtd){
+        int estq;
+        for(int i = 0; i<bebidas.length; i++){
+            if(bebidas[i].getId()== id){
+                estq = bebidas[i].getQtdEstoque();
+                estq += qtd;
+                bebidas[i].setQtdEstoque(estq);
+            }
+            else{
+                System.out.println("Sinto muito, essa bebida nao foi encontrada, cara...");
+
+            }
+        }
+    }
+    
+    public void vendeBebida(Bebidas[] bebidas, int id, int qtd, Clientes cliente){
+        //não vamos usar o cliente no Não Alcoolicas, mas por padrão, deixaremos com, já que precisa no alcoolica
+        int estq;
+        for(int i = 0; i<bebidas.length; i++){
+            estq = bebidas[i].getQtdEstoque();
+            if(estq >= qtd){
+                estq -= qtd;
+                bebidas[i].setQtdEstoque(estq);
+            }
+        } 
+    }
 }
