@@ -34,4 +34,11 @@ class Clientes {
     public int getId(){
         return this.id;
     }
+    public String getCPF() {
+    return this.CPF;
+    }
+
+    public boolean getPodeVenderFiado() {
+        return this.fiado;
+    }
 }

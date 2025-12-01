@@ -10,11 +10,45 @@ public class Main{
         System.out.println("Digite o CNPJ da sua bodega: ");
         String cnpj = sc.nextLine();
         Bodega bodega = new Bodega(nomeBodega, cnpj);
+        
+        //SE QUISER, TEM ALGUNS DADOS PRONTOS PARA INICIALIZAR ABAIXO (Basta tirar o comentário):
+        /*
+        System.out.println("Carregando dados de teste...");
 
-        //menu de funcionamento
+        // 1. Criando e adicionando CLIENTES
+        bodega.cadastraCliente(new Clientes(0, "Alexandre O Grande", "111.222.333-44", true, true));
+        bodega.cadastraCliente(new Clientes(0, "WAVE IGL", "555.666.777-88", true, false));
+        bodega.cadastraCliente(new Clientes(0, "Liminha", "999.888.777-66", false, false));
+
+        // 2. Criando e adicionando BEBIDAS ALCOÓLICAS
+        Alcoolicas cerveja = new Alcoolicas(0, "Skol Lata", 350, 4.50, 4.7);
+        cerveja.setQtdEstoque(100); // É importante setar o estoque, senão começa com 0
+        bodega.cadastraBebida(cerveja);
+
+        Alcoolicas corote = new Alcoolicas(0, "Corote", 750, 35.00, 12.5);
+        corote.setQtdEstoque(20);
+        bodega.cadastraBebida(corote);
+
+        // 3. Criando e adicionando BEBIDAS NÃO-ALCOÓLICAS
+        naoAlcoolicas coca = new naoAlcoolicas(0, "CocaCola Litrao", 2000, 12.00);
+        coca.setQtdEstoque(50);
+        bodega.cadastraBebida(coca);
+
+        naoAlcoolicas agua = new naoAlcoolicas(0, "Aguinha", 500, 3.00);
+        agua.setQtdEstoque(200);
+        bodega.cadastraBebida(agua);
+
+        naoAlcoolicas todin = new naoAlcoolicas(0, "Todinho", 250, 2.50);
+        todin.setQtdEstoque(110);
+        bodega.cadastraBebida(todin);
+
+        System.out.println("Sistema alimentado com sucesso!\n");
+        */
+
+    //menu de funcionamento
         int barFuncionando = 1;
         while(barFuncionando>0){   
-            System.out.println("\nBem vindo!\nSelecione uma opcao:\n1.Cadastrar Bebidas\n2.Lista de Bebidas\n3.Comprar Bebida\n4.Vender Bebida\n5.Cadastrar Cliente \n6.Listar Clientes\n0.Sair");
+            System.out.println("\nBem vindo!\nSelecione uma opcao:\n1.Cadastrar Bebidas\n2.Lista de Bebidas\n3.Comprar Bebida\n4.Vender Bebida\n5.Cadastrar Cliente \n6.Listar Clientes\n7.Salvar Dados\n0.Sair");
             int opcao = sc.nextInt();
             switch (opcao){
                 case 0:
@@ -127,6 +161,10 @@ public class Main{
 
                 case 6: // Listar clientes
                     bodega.listaClientes();
+                    break;
+                
+                case 7:
+                    bodega.salvarDados();
                     break;
 
                 default:

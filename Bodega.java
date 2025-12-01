@@ -1,3 +1,7 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Bodega{
     public String nome;
     public String CNPJ;
@@ -59,7 +63,65 @@ public class Bodega{
         }
     }
 
-    public void salvarDados(){
+    public void salvarDados() {
+        String arquivoNome = "dados_bodega.txt";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(arquivoNome))) {
+            
+            // 1. Salva os dados da própria Bodega
+            writer.write(this.nome + ";" + this.CNPJ);
+            writer.newLine();
+
+            // 2. Salva os Clientes
+            writer.write(String.valueOf(this.qtdClientes));
+            writer.newLine();
+
+            for (int i = 0; i < this.qtdClientes; i++) {
+                Clientes c = this.clientes[i];
+                if (c != null) {
+                    String linhaCliente = c.getId() + ";" + 
+                                        c.getNome() + ";" + 
+                                        c.getCPF() + ";" + 
+                                        c.getMaiorDeIdade() + ";" + 
+                                        c.getPodeVenderFiado();
+                    writer.write(linhaCliente);
+                    writer.newLine();
+                }
+            }
+
+            // 3. Salva as Bebidas
+            writer.write(String.valueOf(this.qtdBebidas));
+            writer.newLine();
+
+            for (int i = 0; i < this.qtdBebidas; i++) {
+                Bebidas b = this.bebidas[i];
+                // Formato: TIPO;ID;Nome;ML;Preco;Estoque
+                if (b != null) {
+                    if (b instanceof Alcoolicas) {
+                        writer.write("ALC;" + 
+                                    b.getId() + ";" + 
+                                    b.getNome() + ";" + 
+                                    b.getMl() + ";" + 
+                                    b.getPreco() + ";" + 
+                                    b.getQtdEstoque() + ";" + 
+                                    ((Alcoolicas) b).getTeorAlcoolico());
+                    } else {
+                        writer.write("NAO;" + 
+                                    b.getId() + ";" + 
+                                    b.getNome() + ";" + 
+                                    b.getMl() + ";" + 
+                                    b.getPreco() + ";" + 
+                                    b.getQtdEstoque());
+                    }
+                    writer.newLine();
+                }
+            }
+
+            System.out.println("Dados salvos com sucesso no arquivo '" + arquivoNome + "'!");
+
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar os dados: " + e.getMessage());
+        }
     }
 
     public void sair(){
